@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON LOOKS — Luxury Fashion House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* HOME SPECIFIC */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:160px 60px 80px;background:var(--off-white);position:relative;}
+.hero-left::after{content:'';position:absolute;right:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border-strong),transparent);}
+.hero-right{background:var(--cream);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-right-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 40%,var(--cream-mid) 0%,var(--cream) 70%);}
+.hero-eyebrow{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--brown-light);margin-bottom:28px;display:flex;align-items:center;gap:16px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--brown-light);}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,6vw,96px);font-weight:300;line-height:.92;color:var(--text-dark);margin-bottom:32px;}
+.hero-h1 em{font-style:italic;color:var(--brown-mid);}
+.hero-desc{font-size:12px;font-weight:300;line-height:2;color:var(--text-muted);max-width:380px;margin-bottom:48px;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-visual{position:relative;z-index:2;padding:80px 60px;display:flex;align-items:center;justify-content:center;}
+.showcase-card{background:var(--white);border:1px solid var(--border);width:260px;box-shadow:0 20px 60px rgba(90,50,0,.1);}
+.showcase-img{height:340px;background:linear-gradient(145deg,var(--cream),var(--cream-mid));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.showcase-mono{font-family:'Cormorant Garamond',serif;font-size:110px;font-weight:300;color:rgba(90,50,0,.08);user-select:none;}
+.showcase-tag{position:absolute;top:14px;left:14px;background:var(--brown-mid);color:var(--white);font-size:7px;letter-spacing:2px;font-weight:700;padding:4px 10px;text-transform:uppercase;}
+.showcase-info{padding:18px;}
+.showcase-cat{font-size:8px;letter-spacing:3px;color:var(--brown-light);text-transform:uppercase;margin-bottom:5px;}
+.showcase-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--text-dark);margin-bottom:6px;}
+.showcase-price{font-size:12px;color:var(--text-muted);font-weight:600;}
+.hero-badge{position:absolute;top:80px;right:16px;width:80px;height:80px;border-radius:50%;background:var(--brown-mid);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--white);}
+.hero-badge span:first-child{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;line-height:1;}
+.hero-badge span:last-child{font-size:7px;letter-spacing:1.5px;font-family:'Montserrat',sans-serif;margin-top:2px;}
+.hero-stat{position:absolute;bottom:60px;left:16px;background:var(--white);border:1px solid var(--border);padding:14px 20px;box-shadow:0 8px 32px rgba(90,50,0,.08);}
+.hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--brown-mid);line-height:1;}
+.hero-stat-lbl{font-size:8px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-top:3px;}
+
+.split-promo{display:grid;grid-template-columns:1fr 1fr;}
+.split-panel{min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:56px;position:relative;overflow:hidden;cursor:pointer;transition:opacity .3s;}
+.split-panel:hover{opacity:.95;}
+.split-dark{background:var(--brown-mid);}
+.split-light{background:var(--cream);}
+.split-glyph{position:absolute;font-family:'Cormorant Garamond',serif;font-size:260px;font-weight:300;line-height:1;bottom:-30px;right:-10px;pointer-events:none;user-select:none;}
+.split-dark .split-glyph{color:rgba(255,255,255,.04);}
+.split-light .split-glyph{color:rgba(90,50,0,.05);}
+.split-ey{font-size:9px;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;font-weight:500;position:relative;z-index:2;}
+.split-dark .split-ey{color:rgba(255,255,255,.5);}
+.split-light .split-ey{color:var(--brown-light);}
+.split-h{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1.1;margin-bottom:16px;position:relative;z-index:2;}
+.split-dark .split-h{color:var(--white);}
+.split-light .split-h{color:var(--text-dark);}
+.split-h em{font-style:italic;color:var(--gold);}
+.split-p{font-size:12px;line-height:1.9;margin-bottom:28px;position:relative;z-index:2;}
+.split-dark .split-p{color:rgba(255,255,255,.6);}
+.split-light .split-p{color:var(--text-muted);}
+
+.stats-bar{background:var(--brown-mid);padding:56px;display:flex;justify-content:center;gap:80px;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--white);line-height:1;}
+.stat-num em{font-style:italic;color:var(--gold);}
+.stat-lbl{font-size:8px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:8px;}
+.stat-div{width:1px;background:rgba(255,255,255,.12);align-self:stretch;}
+
+.cats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.cat-tile{cursor:pointer;}
+.cat-tile-img{height:260px;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:border-color .35s;position:relative;overflow:hidden;}
+.cat-tile:hover .cat-tile-img{border-color:var(--border-strong);}
+.cat-letter{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(90,50,0,.1);}
+.cat-cover{position:absolute;inset:0;background:rgba(26,13,0,.65);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;}
+.cat-tile:hover .cat-cover{opacity:1;}
+.cat-cover-txt{font-size:10px;letter-spacing:3px;color:var(--white);text-transform:uppercase;font-weight:500;}
+.cat-cover-arr{color:var(--gold);font-size:20px;margin-top:8px;}
+.cat-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text-dark);margin-top:10px;text-align:center;}
+.cat-cnt{font-size:9px;letter-spacing:2px;color:var(--text-muted);text-align:center;margin-top:3px;}
+
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{background:var(--off-white);border:1px solid var(--border);padding:32px;position:relative;}
+.testi-card::before{content:'"';position:absolute;top:16px;right:24px;font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(90,50,0,.06);line-height:1;}
+.testi-stars{color:var(--gold);font-size:12px;letter-spacing:3px;margin-bottom:18px;}
+.testi-q{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;line-height:1.7;color:var(--text-dark);margin-bottom:22px;}
+.testi-author{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brown-mid);font-weight:600;}
+.testi-loc{font-size:10px;color:var(--text-muted);margin-top:3px;}
+
+.newsletter{background:var(--cream);border-top:1px solid var(--border);padding:100px 60px;text-align:center;}
+.nl-h2{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--text-dark);margin-bottom:14px;}
+.nl-h2 em{font-style:italic;color:var(--brown-mid);}
+.nl-p{font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:40px;max-width:380px;margin-left:auto;margin-right:auto;}
+.nl-form{display:flex;justify-content:center;max-width:440px;margin:0 auto;}
+.nl-input{flex:1;padding:16px 20px;background:var(--white);border:1px solid var(--border-strong);border-right:none;color:var(--text-dark);font-family:'Montserrat',sans-serif;font-size:11px;outline:none;transition:border-color .3s;}
+.nl-input:focus{border-color:var(--brown-mid);}
+.nl-input::placeholder{color:var(--text-light);}
+.nl-btn{background:var(--brown-mid);color:var(--white);border:none;padding:16px 24px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;}
+.nl-btn:hover{background:var(--brown-dark);}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:140px 32px 60px;}
+  .split-promo{grid-template-columns:1fr;}
+  .cats-grid{grid-template-columns:repeat(3,1fr);}
+  .stats-bar{gap:40px;flex-wrap:wrap;padding:40px 24px;}
+  .testi-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .cats-grid{grid-template-columns:repeat(2,1fr);}
+  .nl-form{flex-direction:column;}
+  .nl-input{border-right:1px solid var(--border-strong);border-bottom:none;}
+  .newsletter{padding:60px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div id="navContainer"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Spring/Summer Collection 2026</div>
+    <h1 class="hero-h1">Dress Like<br>a <em>Don.</em><br>Live Like One.</h1>
+    <p class="hero-desc">Luxury fashion crafted for those who command every room. Where Nigerian elegance meets contemporary refinement.</p>
+    <div class="hero-ctas">
+      <a href="shop.html" class="btn-fill">Shop Collection</a>
+      <a href="about.html" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-badge"><span>SS</span><span>2026</span></div>
+    <div class="hero-visual">
+      <div class="showcase-card" id="heroShowcase" onclick="location.href='product.html?id=1'" style="cursor:pointer">
+        <div class="showcase-img">
+          <span class="showcase-mono">DL</span>
+          <div class="showcase-tag">Signature</div>
+        </div>
+        <div class="showcase-info">
+          <div class="showcase-cat">Outerwear</div>
+          <div class="showcase-name">The Don Statement Coat</div>
+          <div class="showcase-price">₦ 340,000</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stat"><div class="hero-stat-num">12K+</div><div class="hero-stat-lbl">Happy Clients</div></div>
+  </div>
+</section>
+
+<div id="marqueeContainer"></div>
+
+<!-- NEW ARRIVALS -->
+<section class="section-pad">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px" class="reveal">
+      <div>
+        <div class="sec-label">Just Dropped</div>
+        <h2 class="sec-h2">New <em>Arrivals</em></h2>
+      </div>
+      <a href="shop.html" class="btn-outline">View All →</a>
+    </div>
+    <div class="products-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- SPLIT PROMO -->
+<section class="split-promo">
+  <div class="split-panel split-dark" onclick="location.href='shop.html?cat=Women'">
+    <span class="split-glyph">W</span>
+    <div class="split-ey">Women's Collection</div>
+    <h2 class="split-h">Power.<br><em>Presence.</em><br>Poise.</h2>
+    <p class="split-p">Designed for the woman who owns every room she walks into. Bold silhouettes, impeccable draping.</p>
+    <span class="btn-white" style="width:fit-content">Shop Women →</span>
+  </div>
+  <div class="split-panel split-light" onclick="location.href='shop.html?cat=Men'">
+    <span class="split-glyph">M</span>
+    <div class="split-ey">Men's Collection</div>
+    <h2 class="split-h">Sharp.<br><em>Refined.</em><br>Dominant.</h2>
+    <p class="split-p">Tailoring that speaks before you do. For the man whose wardrobe is a statement of power.</p>
+    <span class="btn-fill" style="width:fit-content">Shop Men →</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal"><div class="stat-num">500<em>+</em></div><div class="stat-lbl">Luxury Pieces</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item reveal" style="transition-delay:.15s"><div class="stat-num">12<em>K+</em></div><div class="stat-lbl">Happy Clients</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item reveal" style="transition-delay:.3s"><div class="stat-num">5<em>★</em></div><div class="stat-lbl">Rated Brand</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item reveal" style="transition-delay:.45s"><div class="stat-num">3<em>+</em></div><div class="stat-lbl">Years of Excellence</div></div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section-pad">
+  <div class="container">
+    <div style="margin-bottom:48px" class="reveal">
+      <div class="sec-label">Browse</div>
+      <h2 class="sec-h2">Shop by <em>Category</em></h2>
+    </div>
+    <div class="cats-grid" id="catsGrid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--off-white);border-top:1px solid var(--border);padding:100px 0">
+  <div class="container">
+    <div style="margin-bottom:48px" class="reveal">
+      <div class="sec-label">Client Love</div>
+      <h2 class="sec-h2">What Our Clients <em>Say</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-q">"Don Looks gave me a confidence I never knew I was missing. Every stitch is a work of art."</p><div class="testi-author">Adaeze Okafor</div><div class="testi-loc">Lagos, Nigeria</div></div>
+      <div class="testi-card reveal" style="transition-delay:.1s"><div class="testi-stars">★★★★★</div><p class="testi-q">"I've worn many luxury brands globally — Don Looks is different. It feels personal and uniquely powerful."</p><div class="testi-author">Emeka Chibuzo</div><div class="testi-loc">Abuja, Nigeria</div></div>
+      <div class="testi-card reveal" style="transition-delay:.2s"><div class="testi-stars">★★★★★</div><p class="testi-q">"Wore the Signature Coat to a gala and received compliments all night. Absolutely stunning craftsmanship."</p><div class="testi-author">Fatima Aliyu</div><div class="testi-loc">Port Harcourt, Nigeria</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="sec-label" style="justify-content:center;margin-bottom:16px">Join the Inner Circle</div>
+  <h2 class="nl-h2">Stay <em>Elevated.</em></h2>
+  <p class="nl-p">Subscribe for early access to new drops, exclusive offers, and behind-the-scenes from the house of Don Looks.</p>
+  <div class="nl-form">
+    <input type="email" class="nl-input" placeholder="Enter your email address" id="nlEmail">
+    <button class="nl-btn" onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+</div>
+
+<div id="footerContainer"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+document.getElementById('navContainer').innerHTML = renderNav('home');
+document.getElementById('marqueeContainer').innerHTML = renderMarquee();
+document.getElementById('footerContainer').innerHTML = renderFooter();
+
+// Featured products (first 4 with badges or just first 4)
+const featured = DONLOOKS.products.filter(p=>p.badge).slice(0,4);
+const toShow = featured.length>=4 ? featured : DONLOOKS.products.slice(0,4);
+document.getElementById('featuredGrid').innerHTML = toShow.map(productCardHTML).join('');
+
+// Categories
+const catDefs = [
+  {name:'Women\'s Wear', filter:'Women', letter:'W'},
+  {name:'Men\'s Wear', filter:'Men', letter:'M'},
+  {name:'Accessories', filter:'Accessories', letter:'A'},
+  {name:'Occasionwear', filter:'Occasionwear', letter:'O'},
+  {name:'All Pieces', filter:'All', letter:'DL'},
+];
+document.getElementById('catsGrid').innerHTML = catDefs.map(c=>`
+  <div class="cat-tile reveal" onclick="location.href='shop.html?cat=${c.filter}'">
+    <div class="cat-tile-img">
+      <span class="cat-letter">${c.letter}</span>
+      <div class="cat-cover"><div class="cat-cover-txt">Explore</div><div class="cat-cover-arr">→</div></div>
+    </div>
+    <div class="cat-name">${c.name}</div>
+    <div class="cat-cnt">${c.filter==='All'?DONLOOKS.products.length:DONLOOKS.products.filter(p=>p.gender===c.filter||p.category===c.filter).length} Pieces</div>
+  </div>`).join('');
+
+function subscribeNewsletter(){
+  const email=document.getElementById('nlEmail').value.trim();
+  if(!email||!email.includes('@')){ showToast('Please enter a valid email'); return; }
+  showToast('✓ Welcome to the Don Looks inner circle!');
+  document.getElementById('nlEmail').value='';
+}
+</script>
+</body>
+</html>

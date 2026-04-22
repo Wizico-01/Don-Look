@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — DON LOOKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.about-hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 60px 80px;background:var(--off-white);position:relative;overflow:hidden;}
+.about-hero-glyph{position:absolute;font-family:'Cormorant Garamond',serif;font-size:400px;font-weight:300;color:rgba(90,50,0,.04);line-height:1;pointer-events:none;user-select:none;top:-60px;}
+.about-hero-label{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--brown-light);margin-bottom:20px;}
+.about-hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,88px);font-weight:300;color:var(--text-dark);line-height:1;margin-bottom:24px;position:relative;}
+.about-hero-h1 em{font-style:italic;color:var(--brown-mid);}
+.about-hero-p{font-size:14px;color:var(--text-muted);line-height:2;max-width:560px;position:relative;}
+
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;padding:100px 0;}
+.about-img-block{background:var(--cream);border:1px solid var(--border);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.about-img-mono{font-family:'Cormorant Garamond',serif;font-size:180px;font-weight:300;color:rgba(90,50,0,.08);}
+.about-img-block img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;font-weight:300;color:var(--brown-mid);line-height:1.6;margin-bottom:24px;border-left:3px solid var(--gold);padding-left:20px;}
+.about-body{font-size:13px;color:var(--text-muted);line-height:2;margin-bottom:20px;}
+
+.values-section{background:var(--brown-mid);padding:80px 60px;text-align:center;}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1000px;margin:48px auto 0;}
+.value-item{}
+.value-icon{font-size:36px;margin-bottom:16px;}
+.value-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:10px;}
+.value-desc{font-size:11px;color:rgba(255,255,255,.55);line-height:1.9;}
+
+.team-section{padding:100px 0;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;}
+.team-card{}
+.team-img{aspect-ratio:3/4;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-size:64px;color:rgba(90,50,0,.1);}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--text-dark);margin-bottom:4px;}
+.team-role{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--brown-light);}
+
+@media(max-width:900px){
+  .about-split{grid-template-columns:1fr;gap:40px;padding:60px 0;}
+  .values-grid{grid-template-columns:repeat(2,1fr);}
+  .team-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .values-grid{grid-template-columns:1fr 1fr;gap:24px;}
+  .team-grid{grid-template-columns:1fr;}
+  .values-section{padding:60px 24px;}
+}
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+
+<div class="about-hero">
+  <div class="about-hero-glyph">D</div>
+  <div class="about-hero-label">Our Story</div>
+  <h1 class="about-hero-h1">Born From a Vision<br>of <em>Elegance</em></h1>
+  <p class="about-hero-p">Don Looks was founded on a single belief — that luxury fashion should feel personal, powerful, and unmistakably you.</p>
+</div>
+
+<div class="container">
+  <div class="about-split">
+    <div class="about-img-block reveal">
+      <div class="about-img-mono">DL</div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <div class="sec-label">Who We Are</div>
+      <h2 class="sec-h2">The House of<br><em>Don Looks</em></h2>
+      <p class="about-quote">"To dress well is to honour those around you — and to honour yourself first."</p>
+      <p class="about-body">Don Looks was born in Lagos, Nigeria — from a passion for luxury that felt genuinely African. We saw a gap: the world's greatest fashion houses told stories about Paris and Milan, but none told ours.</p>
+      <p class="about-body">So we built our own house. Every piece in the Don Looks collection bridges Nigerian heritage with contemporary global luxury — for the modern African who refuses to choose between identity and elegance.</p>
+      <p class="about-body">From the hand-embroidered Agbada sets to our signature leather coats, every thread is a declaration of who you are and where you're going.</p>
+      <a href="shop.html" class="btn-fill">Explore the Collection</a>
+    </div>
+  </div>
+</div>
+
+<div class="values-section">
+  <div class="sec-label" style="justify-content:center;color:rgba(255,255,255,.5)">What We Stand For</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:300;color:var(--white)">Our <em style="font-style:italic;color:var(--gold)">Values</em></h2>
+  <div class="values-grid">
+    <div class="value-item reveal"><div class="value-icon">✦</div><div class="value-name">Authenticity</div><div class="value-desc">Every design is rooted in genuine African luxury, not an imitation of Western ideals.</div></div>
+    <div class="value-item reveal" style="transition-delay:.1s"><div class="value-icon">◈</div><div class="value-name">Craftsmanship</div><div class="value-desc">We never compromise on quality. Every stitch, every seam is executed with precision and purpose.</div></div>
+    <div class="value-item reveal" style="transition-delay:.2s"><div class="value-icon">❋</div><div class="value-name">Confidence</div><div class="value-desc">We design for people who know their worth. Our clothes don't just fit — they empower.</div></div>
+    <div class="value-item reveal" style="transition-delay:.3s"><div class="value-icon">◆</div><div class="value-name">Excellence</div><div class="value-desc">We set the standard. In materials, in design, in service — Don Looks demands the best.</div></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="team-section">
+    <div class="sec-label">The People</div>
+    <h2 class="sec-h2">The Minds Behind<br><em>Don Looks</em></h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-img">D</div>
+        <div class="team-name">The Creative Director</div>
+        <div class="team-role">Founder · Head of Design</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.1s">
+        <div class="team-img">L</div>
+        <div class="team-name">Head of Production</div>
+        <div class="team-role">Craftsmanship · Quality</div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.2s">
+        <div class="team-img">DL</div>
+        <div class="team-name">Brand Experience</div>
+        <div class="team-role">Client Relations · Style</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footerContainer"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+document.getElementById('navContainer').innerHTML = renderNav('about');
+document.getElementById('footerContainer').innerHTML = renderFooter();
+</script>
+</body>
+</html>

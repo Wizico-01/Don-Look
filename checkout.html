@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — DON LOOKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.checkout-layout{display:grid;grid-template-columns:1fr 400px;gap:60px;padding:120px 0 100px;align-items:start;}
+.checkout-section{margin-bottom:36px;}
+.checkout-section-title{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--text-dark);font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--brown-mid);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-grid.full{grid-template-columns:1fr;}
+.pay-methods{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;}
+.pay-method{padding:14px 20px;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-mid);transition:border-color .3s;background:none;font-family:'Montserrat',sans-serif;}
+.pay-method:hover,.pay-method.active{border-color:var(--brown-mid);background:var(--cream);}
+.pay-method .icon{font-size:20px;}
+.pay-panel{display:none;padding:20px;background:var(--off-white);border:1px solid var(--border);margin-bottom:20px;}
+.pay-panel.active{display:block;}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+.order-review{background:var(--off-white);border:1px solid var(--border);padding:28px;position:sticky;top:100px;}
+.review-title{font-size:9px;letter-spacing:4px;text-transform:uppercase;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.review-item{display:flex;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.review-item:last-of-type{border-bottom:none;}
+.review-img{width:64px;height:80px;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(90,50,0,.15);flex-shrink:0;overflow:hidden;}
+.review-img img{width:100%;height:100%;object-fit:cover;}
+.review-name{font-size:13px;color:var(--text-dark);margin-bottom:4px;font-weight:500;}
+.review-meta{font-size:10px;color:var(--text-muted);}
+.review-price{font-size:13px;font-weight:600;color:var(--text-dark);margin-left:auto;white-space:nowrap;}
+.review-total-row{display:flex;justify-content:space-between;padding:10px 0;font-size:13px;}
+.review-total-row.big{border-top:1px solid var(--border);margin-top:12px;padding-top:16px;}
+.review-total-row.big .lbl{font-weight:700;}
+.review-total-row.big .val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;}
+.place-order-btn{width:100%;padding:18px;background:var(--brown-mid);color:white;border:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;margin-top:20px;transition:background .35s;}
+.place-order-btn:hover{background:var(--brown-dark);}
+.trust-row{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.trust-item{font-size:10px;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:80px 40px;max-width:600px;margin:0 auto;}
+.success-icon{font-size:64px;margin-bottom:24px;}
+.success-h2{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--text-dark);margin-bottom:16px;}
+.success-h2 em{font-style:italic;color:var(--brown-mid);}
+.success-p{font-size:13px;color:var(--text-muted);line-height:2;margin-bottom:32px;}
+.success-order{background:var(--cream);border:1px solid var(--border);padding:20px;margin-bottom:32px;font-size:13px;}
+.success-order strong{color:var(--brown-mid);}
+
+@media(max-width:900px){
+  .checkout-layout{grid-template-columns:1fr;padding:100px 0 60px;}
+  .order-review{position:static;}
+}
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr;}
+  .pay-methods{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+
+<div class="container" id="checkoutContainer">
+  <div class="checkout-layout">
+    <!-- LEFT FORM -->
+    <div>
+      <!-- CONTACT -->
+      <div class="checkout-section">
+        <div class="checkout-section-title"><span class="step-num">1</span>Contact Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">First Name *</label>
+            <input type="text" class="form-input" id="firstName" placeholder="Adaeze">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name *</label>
+            <input type="text" class="form-input" id="lastName" placeholder="Okafor">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" class="form-input" id="email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" class="form-input" id="phone" placeholder="+234 800 000 0000">
+          </div>
+        </div>
+      </div>
+
+      <!-- SHIPPING -->
+      <div class="checkout-section">
+        <div class="checkout-section-title"><span class="step-num">2</span>Delivery Address</div>
+        <div class="form-grid form-full">
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Street Address *</label>
+            <input type="text" class="form-input" id="address" placeholder="123 Victoria Island Road">
+          </div>
+          <div class="form-group">
+            <label class="form-label">City *</label>
+            <input type="text" class="form-input" id="city" placeholder="Lagos">
+          </div>
+          <div class="form-group">
+            <label class="form-label">State *</label>
+            <select class="form-select" id="state">
+              <option value="">Select State</option>
+              <option>Lagos</option><option>Abuja (FCT)</option><option>Rivers</option>
+              <option>Kano</option><option>Oyo</option><option>Anambra</option>
+              <option>Delta</option><option>Enugu</option><option>Cross River</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Delivery Method *</label>
+            <select class="form-select" id="deliveryMethod" onchange="updateDelivery()">
+              <option value="standard">Standard (3–5 days) — ₦5,000</option>
+              <option value="express">Express (1–2 days) — ₦12,000</option>
+              <option value="pickup">Store Pickup Lagos — Free</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Order Notes (Optional)</label>
+            <input type="text" class="form-input" id="notes" placeholder="Any special instructions for your order...">
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="checkout-section">
+        <div class="checkout-section-title"><span class="step-num">3</span>Payment Method</div>
+        <div class="pay-methods">
+          <button class="pay-method active" onclick="selectPay('paystack',this)"><span class="icon">💳</span>Paystack</button>
+          <button class="pay-method" onclick="selectPay('transfer',this)"><span class="icon">🏦</span>Bank Transfer</button>
+          <button class="pay-method" onclick="selectPay('cash',this)"><span class="icon">💵</span>Pay on Delivery</button>
+        </div>
+
+        <div class="pay-panel active" id="pay-paystack">
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.9">You'll be redirected to Paystack's secure payment page to complete your order. We accept all major cards and bank transfers.</p>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <span style="font-size:22px">💳</span>
+            <span style="font-size:22px">🏦</span>
+            <span style="font-size:22px">📱</span>
+          </div>
+        </div>
+        <div class="pay-panel" id="pay-transfer">
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.9;margin-bottom:16px">Transfer your payment to the details below. Your order will be confirmed once payment is received.</p>
+          <div style="font-size:12px;line-height:2;background:var(--white);padding:16px;border:1px solid var(--border)">
+            <strong>Bank:</strong> Zenith Bank<br>
+            <strong>Account Name:</strong> Don Looks Limited<br>
+            <strong>Account Number:</strong> 1234567890<br>
+            <strong>Reference:</strong> Your order number (provided after checkout)
+          </div>
+        </div>
+        <div class="pay-panel" id="pay-cash">
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.9">Pay cash on delivery. Available in Lagos, Abuja and Port Harcourt only. Extra ₦2,000 POD fee applies.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER REVIEW -->
+    <div class="order-review" id="orderReview">
+      <div class="review-title">Your Order</div>
+      <div id="reviewItems"></div>
+      <div class="review-total-row"><span class="lbl" style="color:var(--text-muted)">Subtotal</span><span class="val" id="reviewSubtotal"></span></div>
+      <div class="review-total-row"><span class="lbl" style="color:var(--text-muted)">Delivery</span><span class="val" id="reviewShipping"></span></div>
+      <div class="review-total-row big"><span class="lbl">Total</span><span class="val" id="reviewTotal"></span></div>
+      <button class="place-order-btn" onclick="placeOrder()">Place Order →</button>
+      <div class="trust-row">
+        <div class="trust-item">🔒 256-bit SSL encryption</div>
+        <div class="trust-item">🛡️ Buyer protection guaranteed</div>
+        <div class="trust-item">↩️ 14-day return policy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">🎉</div>
+  <h2 class="success-h2">Order <em>Confirmed!</em></h2>
+  <p class="success-p">Thank you for shopping with Don Looks. Your order has been received and is being processed. You'll receive a confirmation email shortly.</p>
+  <div class="success-order">
+    Order Reference: <strong id="orderRef"></strong><br>
+    Estimated Delivery: <strong>3–5 business days</strong>
+  </div>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="shop.html" class="btn-fill">Continue Shopping</a>
+    <a href="index.html" class="btn-outline">Back to Home</a>
+  </div>
+</div>
+
+<div id="footerContainer"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+document.getElementById('navContainer').innerHTML = renderNav('');
+document.getElementById('footerContainer').innerHTML = renderFooter();
+
+let payMethod = 'paystack';
+let deliveryCost = 5000;
+
+function selectPay(method, btn){
+  payMethod = method;
+  document.querySelectorAll('.pay-method').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pay-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pay-'+method).classList.add('active');
+}
+
+function updateDelivery(){
+  const method = document.getElementById('deliveryMethod').value;
+  const subtotal = Cart.total();
+  if(method==='standard') deliveryCost = subtotal>=150000 ? 0 : 5000;
+  else if(method==='express') deliveryCost = 12000;
+  else deliveryCost = 0;
+  renderReview();
+}
+
+function renderReview(){
+  const cart = Cart.get();
+  if(cart.length===0){
+    location.href='shop.html';
+    return;
+  }
+  const subtotal = Cart.total();
+  const total = subtotal + deliveryCost;
+
+  document.getElementById('reviewItems').innerHTML = cart.map(item=>`
+    <div class="review-item">
+      <div class="review-img">${item.image?`<img src="${item.image}" alt="">`:' DL'}</div>
+      <div>
+        <div class="review-name">${item.name}</div>
+        <div class="review-meta">Size: ${item.size} · Colour: ${item.color} · Qty: ${item.qty}</div>
+      </div>
+      <div class="review-price">${fmt(item.price*item.qty)}</div>
+    </div>`).join('');
+
+  document.getElementById('reviewSubtotal').textContent = fmt(subtotal);
+  document.getElementById('reviewShipping').textContent = deliveryCost===0?'Free':fmt(deliveryCost);
+  document.getElementById('reviewTotal').textContent = fmt(total);
+}
+
+function placeOrder(){
+  const required = ['firstName','lastName','email','phone','address','city','state'];
+  const missing = required.filter(id=>!document.getElementById(id).value.trim());
+  if(missing.length){
+    showToast('Please fill in all required fields');
+    document.getElementById(missing[0]).focus();
+    return;
+  }
+  const email = document.getElementById('email').value;
+  if(!email.includes('@')||!email.includes('.')){
+    showToast('Please enter a valid email address');
+    return;
+  }
+
+  // Generate order reference
+  const ref = 'DL-'+Date.now().toString(36).toUpperCase();
+  document.getElementById('orderRef').textContent = ref;
+
+  // Save order
+  const order = {
+    ref, date: new Date().toISOString(),
+    items: Cart.get(),
+    total: Cart.total()+deliveryCost,
+    customer: {
+      name: document.getElementById('firstName').value+' '+document.getElementById('lastName').value,
+      email, phone: document.getElementById('phone').value,
+      address: document.getElementById('address').value+', '+document.getElementById('city').value+', '+document.getElementById('state').value
+    },
+    payment: payMethod, delivery: document.getElementById('deliveryMethod').value
+  };
+  const orders = JSON.parse(localStorage.getItem('dl_orders')||'[]');
+  orders.push(order);
+  localStorage.setItem('dl_orders', JSON.stringify(orders));
+  Cart.clear();
+
+  // Show success
+  document.getElementById('checkoutContainer').style.display='none';
+  document.getElementById('successScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.selectPay=selectPay;
+window.updateDelivery=updateDelivery;
+window.placeOrder=placeOrder;
+renderReview();
+</script>
+</body>
+</html>
